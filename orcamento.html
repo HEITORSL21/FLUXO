@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fluxo | Web Design Futurista</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+  <!-- Lottie -->
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+  <style>
+    body {
+      background-color: #0a0a0a;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    /* Neon Animations */
+    @keyframes neonPulse {
+      0%, 100% { box-shadow: 0 0 8px #6c63ff, 0 0 16px #00aaff; }
+      50% { box-shadow: 0 0 16px #6c63ff, 0 0 32px #00aaff; }
+    }
+    .animate-neon { animation: neonPulse 2s infinite alternate; }
+
+    /* Fade In Up */
+    @keyframes fadeInUp {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    .animate-fadeInUp { animation: fadeInUp 0.8s ease forwards; }
+
+    /* LED pulsando para o form */
+    @keyframes ledPulse {
+      0%,100%{ box-shadow: 0 0 10px #6c63ff, 0 0 20px #00aaff; border-color:#6c63ff; }
+      50%{ box-shadow: 0 0 20px #6c63ff, 0 0 40px #00aaff; border-color:#00aaff; }
+    }
+    .led-pulse {
+      animation: ledPulse 1.5s infinite alternate;
+      border: 2px solid #6c63ff;
+    }
+
+    /* Particles leves */
+    #particles-canvas {
+      position: fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      z-index:-1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Particles Canvas -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- Header -->
+  <header class="fixed top-0 left-1/2 transform -translate-x-1/2 w-[92%] max-w-6xl z-40 bg-gray-900/80 backdrop-blur-md py-4 rounded-b-2xl flex justify-between items-center px-4">
+    <div class="text-2xl font-bold neon-text">FLUXO</div>
+    <nav class="space-x-4 hidden md:flex">
+      <!-- Todos os botões levam para o site inicial (.) -->
+      <a href="." class="menu-link hover:text-purple-400 transition">Home</a>
+      <a href="." class="menu-link hover:text-purple-400 transition">Serviços</a>
+      <a href="." class="menu-link hover:text-purple-400 transition">Portfólio</a>
+      <a href="." class="menu-link hover:text-purple-400 transition">Depoimentos</a>
+    </nav>
+  </header>
+
+  <!-- MAIN -->
+  <main class="flex flex-col items-center justify-center min-h-screen pt-28 px-4">
+
+    <!-- Formulário Orçamento com LED pulsante -->
+    <form id="orcamentoForm" class="bg-gray-900/80 backdrop-blur-md shadow-2xl rounded-2xl p-8 w-full max-w-lg space-y-6 animate-fadeInUp led-pulse">
+
+      <!-- Top Animation -->
+      <div class="flex justify-center">
+        <lottie-player 
+          src="https://assets2.lottiefiles.com/packages/lf20_jcikwtux.json"  
+          background="transparent" speed="1" style="width: 120px; height: 120px;" loop autoplay>
+        </lottie-player>
+      </div>
+
+      <h2 class="text-3xl font-bold text-center text-purple-400 drop-shadow-md">Crie seu pedido</h2>
+      <p class="text-center text-gray-400 text-sm">Preencha suas informações para receber o orçamento via WhatsApp</p>
+
+      <!-- Nome -->
+      <div>
+        <label class="block font-medium mb-1 text-purple-300" for="nome">
+          <i class="fa fa-user mr-2 text-blue-400"></i>Nome
+        </label>
+        <input type="text" id="nome" name="nome" required class="w-full bg-black/60 border border-purple-600 rounded-lg px-4 py-2 text-white focus:ring-2 focus:ring-purple-500 focus:outline-none transition">
+      </div>
+
+      <!-- Email -->
+      <div>
+        <label class="block font-medium mb-1 text-purple-300" for="email">
+          <i class="fa fa-envelope mr-2 text-blue-400"></i>Email
+        </label>
+        <input type="email" id="email" name="email" required class="w-full bg-black/60 border border-purple-600 rounded-lg px-4 py-2 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none transition">
+      </div>
+
+      <!-- Tipo de Orçamento -->
+      <div>
+        <label class="block font-medium mb-1 text-purple-300" for="tipo">
+          <i class="fa fa-list mr-2 text-blue-400"></i>Tipo de Orçamento
+        </label>
+        <select id="tipo" name="tipo" required class="w-full bg-black/60 border border-purple-600 rounded-lg px-4 py-2 text-white focus:ring-2 focus:ring-blue-500 transition">
+          <option value="">Selecione...</option>
+          <option value="web">Website</option>
+          <option value="design">Design Gráfico</option>
+          <option value="branding">Branding</option>
+          <option value="outros">Outros</option>
+        </select>
+      </div>
+
+      <!-- Valor estimado -->
+      <div>
+        <label class="block font-medium mb-1 text-purple-300">
+          <i class="fa fa-dollar-sign mr-2 text-blue-400"></i>Valor estimado
+        </label>
+        <div class="flex gap-2">
+          <select id="moeda" name="moeda" class="bg-black/60 border border-purple-600 rounded-lg px-3 py-2 text-white focus:ring-2 focus:ring-purple-500">
+            <option value="BRL">R$ (BRL)</option>
+            <option value="USD">$ (USD)</option>
+            <option value="EUR">€ (EUR)</option>
+          </select>
+          <input type="number" id="valor" name="valor" placeholder="Digite o valor" class="flex-1 bg-black/60 border border-purple-600 rounded-lg px-4 py-2 text-white focus:ring-2 focus:ring-blue-500 transition">
+        </div>
+      </div>
+
+      <!-- Pagamento -->
+      <div>
+        <span class="block font-medium mb-2 text-purple-300">
+          <i class="fa fa-credit-card mr-2 text-blue-400"></i>Forma de Pagamento
+        </span>
+        <div class="grid grid-cols-2 gap-3">
+          <label class="flex items-center gap-2 border border-purple-600 rounded-lg p-3 cursor-pointer hover:bg-purple-900/40 transition">
+            <input type="radio" name="pagamento" value="pix" required>
+            <i class="fa fa-qrcode text-green-400"></i> Pix
+          </label>
+          <label class="flex items-center gap-2 border border-purple-600 rounded-lg p-3 cursor-pointer hover:bg-purple-900/40 transition">
+            <input type="radio" name="pagamento" value="cartao">
+            <i class="fa fa-credit-card text-blue-400"></i> Cartão
+          </label>
+          <label class="flex items-center gap-2 border border-purple-600 rounded-lg p-3 cursor-pointer hover:bg-purple-900/40 transition">
+            <input type="radio" name="pagamento" value="paypal">
+            <img src="https://www.paypalobjects.com/webstatic/icon/pp258.png" class="w-5 h-5" alt="PayPal"> PayPal
+          </label>
+          <label class="flex items-center gap-2 border border-purple-600 rounded-lg p-3 cursor-pointer hover:bg-purple-900/40 transition">
+            <input type="radio" name="pagamento" value="boleto">
+            <i class="fa fa-barcode text-gray-400"></i> Boleto
+          </label>
+        </div>
+      </div>
+
+      <!-- Mensagem -->
+      <div>
+        <label class="block font-medium mb-1 text-purple-300" for="mensagem">
+          <i class="fa fa-comment-dots mr-2 text-blue-400"></i>Mensagem
+        </label>
+        <textarea id="mensagem" name="mensagem" rows="4" class="w-full bg-black/60 border border-purple-600 rounded-lg px-4 py-2 text-white focus:ring-2 focus:ring-blue-500 transition"></textarea>
+      </div>
+
+      <!-- Botão -->
+      <button type="submit" class="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-bold py-3 rounded-lg shadow-lg animate-neon transition relative overflow-hidden">
+        Enviar para WhatsApp
+      </button>
+
+      <!-- Feedback -->
+      <div id="successAnimation" class="hidden flex justify-center mt-4">
+        <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_jbrw3hcz.json" background="transparent" speed="1" style="width: 100px; height: 100px;" autoplay></lottie-player>
+      </div>
+    </form>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-black border-t border-purple-800 py-4 text-center text-sm text-gray-400">
+    © 2025 Fluxo. Todos os direitos reservados.
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Particles leves
+    const canvas = document.getElementById('particles-canvas');
+    const ctx = canvas.getContext('2d');
+    let w = canvas.width = window.innerWidth;
+    let h = canvas.height = window.innerHeight;
+
+    const particles = [];
+    const particleCount = 40;
+
+    for (let i = 0; i < particleCount; i++) {
+      particles.push({
+        x: Math.random()*w,
+        y: Math.random()*h,
+        vx: (Math.random()-0.5)*0.5,
+        vy: (Math.random()-0.5)*0.5,
+        r: Math.random()*2+1
+      });
+    }
+
+    function animate() {
+      ctx.clearRect(0,0,w,h);
+      for(let p of particles){
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if(p.x<0||p.x>w) p.vx*=-1;
+        if(p.y<0||p.y>h) p.vy*=-1;
+
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        ctx.fillStyle = "#6c63ff";
+        ctx.fill();
+
+        // Linhas
+        for(let q of particles){
+          const dx = p.x - q.x;
+          const dy = p.y - q.y;
+          const dist = Math.sqrt(dx*dx+dy*dy);
+          if(dist<80){
+            ctx.strokeStyle = 'rgba(108,99,255,0.2)';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(p.x,p.y);
+            ctx.lineTo(q.x,q.y);
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(animate);
+    }
+    animate();
+    window.addEventListener('resize',()=>{ w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; });
+
+    // Form submit
+    document.getElementById('orcamentoForm').addEventListener('submit', function(e){
+      e.preventDefault();
+
+      const nome = document.getElementById('nome').value;
+      const email = document.getElementById('email').value;
+      const tipo = document.getElementById('tipo').value;
+      const moeda = document.getElementById('moeda').value;
+      const valor = document.getElementById('valor').value;
+      const pagamento = document.querySelector('input[name="pagamento"]:checked')?.value;
+      const mensagem = document.getElementById('mensagem').value;
+
+      const anim = document.getElementById('successAnimation');
+      anim.classList.remove('hidden');
+
+      setTimeout(()=>{
+        const texto = `Olá, meu nome é ${nome}.
+Email: ${email}
+Orçamento: ${tipo}
+Valor estimado: ${moeda} ${valor}
+Forma de pagamento: ${pagamento}
+Mensagem: ${mensagem}`;
+
+        const url = `https://wa.me/5589994386200?text=${encodeURIComponent(texto)}`;
+        window.open(url,'_blank');
+        anim.classList.add('hidden');
+      },1000);
+    });
+  </script>
+</body>
+</html>

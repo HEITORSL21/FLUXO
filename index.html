@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fluxo | Web Design Futurista</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-dark-bg text-white">
+
+  <!-- NOTE: alterações realizadas
+       - botões "Solicitar orçamento" transformados em links <a href="orcamento.html"> com ids para fallback JS
+       - CTA WhatsApp e floating WhatsApp atualizados para +55 89 99438-6200 (wa.me/5589994386200)
+       - "Ver portfólio" agora é link para #portfolio
+       - adicionado link "Solicitar orçamento" no menu mobile
+  -->
+
+  <!-- Loader -->
+  <div id="site-loader" class="loader fixed inset-0 flex items-center justify-center z-50">
+    <div class="loader-logo" aria-hidden="true"></div>
+  </div>
+
+  <!-- Navbar -->
+  <header class="fixed top-4 left-1/2 transform -translate-x-1/2 w-[92%] max-w-6xl z-40">
+    <nav class="nav glass p-3 rounded-2xl flex items-center justify-between" role="navigation" aria-label="Main navigation">
+      <div class="flex items-center gap-4">
+        <div class="logo neon-text font-orbitron text-xl font-bold">FLUXO</div>
+        <ul class="hidden md:flex gap-6 text-sm">
+          <li><a href="#hero" class="nav-link">Home</a></li>
+          <li><a href="#servicos" class="nav-link">Serviços</a></li>
+          <li><a href="#portfolio" class="nav-link">Portfólio</a></li>
+          <li><a href="#depoimentos" class="nav-link">Depoimentos</a></li>
+        </ul>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <button id="theme-toggle" aria-label="Alternar tema" aria-pressed="false" class="p-2 rounded-full border border-white/10">🌓</button>
+        <a href="#cta" class="btn-glow px-4 py-2 rounded-full hidden md:inline">Fale Conosco</a>
+
+        <button id="menu-toggle" class="md:hidden p-2 rounded-md border border-white/10" aria-expanded="false" aria-controls="mobile-menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 12h18M3 6h18M3 18h18" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile menu (adicionado link de solicitar orçamento) -->
+    <div id="mobile-menu" class="mobile-menu hidden mt-2 bg-gray-900/60 rounded-2xl p-4 backdrop-blur-md" aria-hidden="true">
+      <a href="#servicos" class="block py-2">Serviços</a>
+      <a href="#portfolio" class="block py-2">Portfólio</a>
+      <a href="#depoimentos" class="block py-2">Depoimentos</a>
+      <a id="solicitar-orcamento-mobile" href="orcamento.html" class="block py-2">Solicitar orçamento</a>
+    </div>
+  </header>
+
+  <!-- MAIN / HERO -->
+  <main>
+    <section id="hero" class="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
+      <div id="particles-js" class="absolute inset-0 -z-10" aria-hidden="true"></div>
+
+      <!-- Hero Lottie (exemplo) -->
+      <div class="hero-lottie-wrapper absolute right-6 top-12 opacity-30 pointer-events-none hidden lg:block">
+        <lottie-player id="heroLottie" src="https://assets7.lottiefiles.com/packages/lf20_touohxv0.json"
+          background="transparent" speed="1" loop autoplay style="width:320px;height:320px;"></lottie-player>
+      </div>
+
+      <div class="container mx-auto px-6 relative z-10">
+        <h1 class="text-6xl md:text-7xl font-orbitron font-bold neon-text mb-4">FLUXO</h1>
+        <p class="text-lg md:text-2xl max-w-2xl mx-auto mb-8">Transformando ideias em presença digital que vende.</p>
+
+        <div class="flex flex-col md:flex-row items-center gap-4 justify-center">
+          <button id="primary-cta" class="btn-glow px-8 py-4 rounded-full text-lg font-bold">Criar meu site agora</button>
+          <!-- convertido para <a> para garantir navegação -->
+          <a id="solicitar-orcamento-hero" href="orcamento.html" role="button"
+             class="inline-flex items-center justify-center px-6 py-3 rounded-full border border-white/20 hover:bg-white/5">
+            Solicitar orçamento
+          </a>
+          <!-- Ver portfólio aponta para a seção -->
+          <a id="demo-cta" href="#portfolio" class="px-6 py-3 rounded-full border border-white/20 hover:bg-white/5">Ver portfólio</a>
+        </div>
+
+        <div class="mt-8 text-sm opacity-80"> <span id="typing" class="font-medium"></span></div>
+      </div>
+    </section>
+
+    <!-- SERVIÇOS -->
+    <section id="servicos" class="py-20 px-6">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl font-bold text-center mb-12 neon-text">NOSSOS SERVIÇOS</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Card 1 - imagem substituída -->
+          <article class="service-card hover-card p-6 rounded-2xl bg-gray-800/60" data-tilt data-tilt-glare data-tilt-max="12">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/00ffe1b5-b4b5-44b1-9719-564200928c26.png" alt="Ícone Sites Institucionais" class="w-20 h-20 mx-auto mb-4" loading="lazy">
+            <h3 class="text-xl font-semibold mb-2">Sites Institucionais</h3>
+            <p class="text-sm text-gray-300 mb-4">Presença digital profissional que transmite credibilidade.</p>
+            <div class="skillbar" data-value="92"><div class="skillbar-fill"></div></div>
+          </article>
+
+          <!-- Card 2 - imagem substituída -->
+          <article class="service-card hover-card p-6 rounded-2xl bg-gray-800/60" data-tilt data-tilt-glare data-tilt-max="12">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a8d856d4-793c-449e-ab85-555cfd994559.png" alt="Ícone Landing Pages" class="w-20 h-20 mx-auto mb-4" loading="lazy">
+            <h3 class="text-xl font-semibold mb-2">Landing Pages</h3>
+            <p class="text-sm text-gray-300 mb-4">Foco em conversão e performance.</p>
+            <div class="skillbar" data-value="88"><div class="skillbar-fill"></div></div>
+          </article>
+
+          <!-- Card 3 - imagem substituída -->
+          <article class="service-card hover-card p-6 rounded-2xl bg-gray-800/60" data-tilt data-tilt-glare data-tilt-max="12">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c9241c59-1024-4304-a553-e66de059366c.png" alt="Ícone E-commerce" class="w-20 h-20 mx-auto mb-4" loading="lazy">
+            <h3 class="text-xl font-semibold mb-2">E-commerce</h3>
+            <p class="text-sm text-gray-300 mb-4">Lojas completas com UX fino e integração.</p>
+            <div class="skillbar" data-value="95"><div class="skillbar-fill"></div></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- DIFERENCIAIS -->
+    <section id="diferenciais" class="py-20 px-6 bg-gradient-to-b from-gray-900 to-gray-800">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl font-bold text-center mb-12 neon-text">O QUE NOS DIFERENCIA</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div class="text-center p-6 hover:scale-105 transition-transform">
+            <div class="w-24 h-24 mx-auto mb-4 rounded-full border-4 border-neon-blue flex items-center justify-center">
+              <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/7ee688e8-49e6-4f84-add7-b8035e8ce1b5.png" alt="Design Imersivo" class="w-12 h-12" loading="lazy">
+            </div>
+            <h3 class="text-2xl font-bold mb-2">Design Imersivo</h3>
+            <p class="text-gray-300">Experiências visuais que cativam e envolvem seu público.</p>
+          </div>
+
+          <div class="text-center p-6 hover:scale-105 transition-transform">
+            <div class="w-24 h-24 mx-auto mb-4 rounded-full border-4 border-futurist-purple flex items-center justify-center">
+              <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/b684f7e6-746c-4887-b015-f9aae554bf5b.png" alt="IA para Otimização" class="w-12 h-12" loading="lazy">
+            </div>
+            <h3 class="text-2xl font-bold mb-2">IA para Otimização</h3>
+            <p class="text-gray-300">Tecnologia inteligente que melhora continuamente seu site.</p>
+          </div>
+
+          <div class="text-center p-6 hover:scale-105 transition-transform">
+            <div class="w-24 h-24 mx-auto mb-4 rounded-full border-4 border-neon-blue flex items-center justify-center">
+              <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/6ad76645-8b67-4bad-8371-8120908f7fd9.png" alt="Performance e SEO" class="w-12 h-12" loading="lazy">
+            </div>
+            <h3 class="text-2xl font-bold mb-2">Performance e SEO</h3>
+            <p class="text-gray-300">Sites rápidos e otimizados para os motores de busca.</p>
+          </div>
+
+          <div class="text-center p-6 hover:scale-105 transition-transform">
+            <div class="w-24 h-24 mx-auto mb-4 rounded-full border-4 border-futurist-purple flex items-center justify-center">
+              <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/6abb8119-f7fa-4bba-a694-579835dc7204.png" alt="UX Interativa" class="w-12 h-12" loading="lazy">
+            </div>
+            <h3 class="text-2xl font-bold mb-2">UX Interativa</h3>
+            <p class="text-gray-300">Navegação intuitiva que encanta seus visitantes.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PORTFÓLIO -->
+    <section id="portfolio" class="py-20 px-6">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl font-bold text-center mb-12 neon-text">NOSSA GALERIA</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <figure class="portfolio-item rounded-xl overflow-hidden cursor-zoom" data-media="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/35b67f83-4662-455e-aed1-442c31cb4720.png">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/35b67f83-4662-455e-aed1-442c31cb4720.png" alt="Projeto 1" loading="lazy" class="w-full h-auto">
+          </figure>
+
+          <figure class="portfolio-item rounded-xl overflow-hidden cursor-zoom" data-media="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/99d919f8-00fd-447f-8b7f-5c5421fa09ff.png">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/99d919f8-00fd-447f-8b7f-5c5421fa09ff.png" alt="Projeto 2" loading="lazy" class="w-full h-auto">
+          </figure>
+
+          <figure class="portfolio-item rounded-xl overflow-hidden cursor-zoom" data-media="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/7137752c-fd6d-4288-90d6-d5f09b9f8c62.png">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/7137752c-fd6d-4288-90d6-d5f09b9f8c62.png" alt="Projeto 3" loading="lazy" class="w-full h-auto">
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEPOIMENTOS -->
+    <section id="depoimentos" class="py-20 px-6 bg-gradient-to-r from-gray-900 to-gray-800">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-4xl font-bold text-center mb-8 neon-text">O QUE DIZEM NOSSOS CLIENTES</h2>
+
+        <div class="carousel relative overflow-hidden rounded-2xl">
+          <div class="carousel-track flex transition-transform duration-700">
+            <blockquote class="min-w-full p-6 glass-card">
+              <div class="flex items-center mb-4">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c94ee0fe-d4d2-4251-812d-8f5fbf63877e.png" alt="Carlos Silva" class="rounded-full w-16 h-16 mr-4" loading="lazy">
+                <div>
+                  <div class="font-bold">Carlos Silva</div>
+                  <div class="text-gray-300 text-sm">CEO, TechSolutions</div>
+                </div>
+              </div>
+              <p class="italic">"A Fluxo transformou completamente nossa presença digital. Nosso site agora é uma verdadeira máquina de conversões!"</p>
+            </blockquote>
+
+            <blockquote class="min-w-full p-6 glass-card">
+              <div class="flex items-center mb-4">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a02efc84-a92b-4507-9fa2-b948b129cd86.png" alt="Ana Beatriz" class="rounded-full w-16 h-16 mr-4" loading="lazy">
+                <div>
+                  <div class="font-bold">Ana Beatriz</div>
+                  <div class="text-gray-300 text-sm">Diretora de Marketing</div>
+                </div>
+              </div>
+              <p class="italic">"O cuidado com a experiência do usuário é impressionante. Nossos clientes amam a nova plataforma."</p>
+            </blockquote>
+
+            <blockquote class="min-w-full p-6 glass-card">
+              <div class="flex items-center mb-4">
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/7d3ddabd-04a1-427b-b67a-04fe8abcbb75.png" alt="Ricardo Almeida" class="rounded-full w-16 h-16 mr-4" loading="lazy">
+                <div>
+                  <div class="font-bold">Ricardo Almeida</div>
+                  <div class="text-gray-300 text-sm">Fundador, Startup X</div>
+                </div>
+              </div>
+              <p class="italic">"Do conceito à implementação, a equipe da Fluxo foi impecável em cada detalhe."</p>
+            </blockquote>
+          </div>
+
+          <div class="carousel-controls absolute bottom-4 right-4 flex gap-2">
+            <button class="prev p-2 rounded-full bg-black/50">‹</button>
+            <button class="next p-2 rounded-full bg-black/50">›</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+     <!-- CTA final -->
+  <section id="cta" class="min-h-[50vh] flex items-center justify-center px-6">
+    <div class="max-w-3xl text-center p-8 rounded-2xl relative z-10 glass-card">
+      <h3 class="text-3xl font-bold mb-4">Pronto para levar seu negócio para o próximo nível?</h3>
+      <p class="text-gray-300 mb-6">Fale conosco e receba uma proposta personalizada.</p>
+      <div class="flex gap-4 justify-center">
+        <a href="https://wa.me/5589994386200" target="_blank" rel="noopener noreferrer" class="btn-glow px-6 py-3 rounded-full">Fale no WhatsApp</a>
+        <a id="solicitar-orcamento-cta" href="orcamento.html" role="button" class="px-6 py-3 rounded-full border border-white/10">Solicitar orçamento</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Floating WhatsApp (atualizado para seu número) -->
+  <a href="https://wa.me/5589994386200" target="_blank" rel="noopener noreferrer" class="whatsapp-fixed" aria-label="Whatsapp">
+    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.472-.149-.672.15-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.447-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.52-.074-.148-.672-1.62-.922-2.219-.242-.579-.487-.5-.672-.51l-.573-.01c-.198 0-.52.074-.795.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.076 4.487  .709.306 1.263.49 1.695.627.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.289.173-1.413-.074-.123-.273-.198-.57-.347z" fill="#fff"/></svg>
+  </a>
+
+  <!-- Back to top -->
+  <button id="back-to-top" class="back-to-top hidden" aria-label="Voltar ao topo">↑</button>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox fixed inset-0 hidden items-center justify-center z-50 bg-black/80" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="max-w-4xl max-h-[90vh] p-4">
+      <img id="lightbox-img" src="" alt="Preview" class="w-full h-auto rounded-md shadow-lg">
+      <button id="lightbox-close" class="mt-4 p-2 rounded-full bg-white/10">Fechar</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+  <!-- Fallback JS para garantir navegação caso algo intercepte o clique -->
+  <script>
+    (function() {
+      // caso algum script tenha prevenido a navegação, força após 120ms
+      const openOrcamentoFallback = (href='orcamento.html') => {
+        try { window.location.href = href; } catch (e) { window.open(href, '_blank'); }
+      };
+
+      const links = [
+        document.getElementById('solicitar-orcamento-hero'),
+        document.getElementById('solicitar-orcamento-cta'),
+        document.getElementById('solicitar-orcamento-mobile')
+      ];
+
+      links.forEach(el => {
+        if (!el) return;
+        el.addEventListener('click', (ev) => {
+          // deixa o comportamento padrão primeiro (se não houver preventDefault)
+          setTimeout(() => {
+            const current = window.location.pathname.split('/').pop();
+            if (!current || !current.includes('orcamento.html')) {
+              openOrcamentoFallback(el.getAttribute('href') || 'orcamento.html');
+            }
+          }, 120);
+        });
+      });
+    })();
+
+  </script>
+</body>
+</html>

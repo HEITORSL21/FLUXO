@@ -1,0 +1,309 @@
+:root{
+  /* dark theme (padrão) */
+  --neon-blue: #00D9FF;
+  --futurist-purple: #8A2BE2;
+  --dark-bg:#0A0A0A;
+  --surface: rgba(255,255,255,0.03);
+  --glass: rgba(255,255,255,0.06);
+  --text-main: #FFFFFF;
+  --muted: #BFC7D3;
+  --card-border: rgba(255,255,255,0.04);
+  --btn-text: #FFFFFF;
+  --meta-theme: #0a0a0a; /* meta theme-color para mobile */
+}
+
+/* LIGHT MODE — APERFEIÇOADO */
+html[data-theme="light"] {
+  --neon-blue: #006FD6;        /* tom de neon mais contido no claro */
+  --futurist-purple: #6B3ED9;  /* roxo ajustado */
+  --dark-bg: #F6F7FB;          /* fundo claro */
+  --surface: rgba(10,12,18,0.02); /* superfícies com leve sombreado */
+  --glass: rgba(255,255,255,0.75); /* vidro claro com blur */
+  --text-main: #0B1220;        /* texto escuro para contraste */
+  --muted: #4B5563;            /* texto secundário (escuro) */
+  --card-border: rgba(11,18,32,0.06);
+  --btn-text: #FFFFFF;
+  --meta-theme: #F6F7FB;       /* meta theme-color (mobile barra) */
+}
+
+/* transição suave quando trocamos tema */
+html.theme-transition, body.theme-transition {
+  transition: background-color 320ms ease, color 320ms ease;
+}
+
+/* aplicar cores base a elementos */
+body {
+  background: var(--dark-bg);
+  color: var(--text-main);
+}
+
+/* nav / glass adjustments for light */
+.nav {
+  backdrop-filter: blur(8px);
+  background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid var(--card-border);
+}
+
+/* For light mode we want glass to look lighter and more solid */
+html[data-theme="light"] .nav {
+  background: linear-gradient(90deg, rgba(255,255,255,0.72), rgba(255,255,255,0.66));
+  box-shadow: 0 6px 24px rgba(15, 20, 30, 0.06);
+}
+
+/* Neon text tuned for light mode: less intense, dark halo */
+.neon-text {
+  text-shadow: 0 0 6px var(--neon-blue), 0 0 18px rgba(0,0,0,0.06);
+  color: var(--text-main);
+}
+html[data-theme="light"] .neon-text {
+  /* reduced glow and subtle stroke for readability */
+  text-shadow: 0 0 4px rgba(0,0,0,0.06), 0 0 8px rgba(0,0,0,0.04);
+}
+
+/* Buttons (glow adapted to theme) */
+.btn-glow {
+  color: var(--btn-text);
+  background: linear-gradient(90deg, var(--neon-blue), var(--futurist-purple));
+  box-shadow: 0 10px 30px rgba(11, 20, 40, 0.08), 0 0 18px rgba(0,0,0,0.02);
+  transition: transform .18s, box-shadow .18s, filter .18s;
+}
+html[data-theme="light"] .btn-glow {
+  /* In light mode keep color vivid but reduce outer glow */
+  box-shadow: 0 8px 22px rgba(11,18,32,0.06), 0 0 12px rgba(0,111,214,0.08);
+  filter: saturate(1.02);
+}
+
+/* Cards, glass and borders */
+.service-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid var(--card-border);
+}
+html[data-theme="light"] .service-card {
+  background: #ffffff;
+  background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(246,247,251,0.97));
+  color: var(--text-main);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 6px 20px rgba(11,18,32,0.04);
+}
+
+/* glass-card (depoimentos) */
+.glass-card {
+  background: var(--glass);
+  border: 1px solid var(--card-border);
+  backdrop-filter: blur(8px);
+  color: var(--text-main);
+}
+
+/* skillbars readable in light */
+.skillbar { background: rgba(11,18,32,0.04); }
+.skillbar-fill { background: linear-gradient(90deg, var(--neon-blue), var(--futurist-purple)); }
+
+/* whatsapp button adaptation */
+.whatsapp-fixed {
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+}
+html[data-theme="light"] .whatsapp-fixed {
+  box-shadow: 0 10px 30px rgba(11,18,32,0.06);
+}
+
+/* loader (light mode) */
+.loader { background: rgba(255,255,255,0.98); }
+html[data-theme="light"] .loader-logo {
+  border-top-color: var(--neon-blue);
+  border-bottom-color: var(--futurist-purple);
+  filter: drop-shadow(0 8px 20px rgba(11,18,32,0.04));
+}
+
+/* images: utilitário para ajustar contraste no light mode */
+.invert-on-light {
+  transition: filter 240ms ease;
+}
+html[data-theme="light"] .invert-on-light {
+  /* aumenta contraste e brilho apenas no modo claro */
+  filter: contrast(1.04) brightness(1.02);
+}
+
+/* Lottie / particles tuning (reduzir força do glow em light) */
+#particles-js { transition: opacity 240ms ease; }
+html[data-theme="light"] #particles-js { opacity: 0.65; filter: saturate(0.9) brightness(0.95); }
+
+/* small accessibility: ensure focus outline visible in light mode */
+:focus { outline: 2px dashed rgba(0,111,214,0.35); outline-offset: 3px; }
+
+/* quick utility: reduce glow for headings on light */
+html[data-theme="light"] h1, html[data-theme="light"] h2 {
+  text-shadow: none;
+}
+
+/* keep transition class removal short */
+html.theme-transition, body.theme-transition { transition-duration: 320ms; }
+
+/* Fonts */
+.font-orbitron { font-family: 'Orbitron', sans-serif; }
+
+/* Base */
+body { background: var(--dark-bg); color: inherit; -webkit-font-smoothing:antialiased; }
+
+/* Loader */
+.loader { background: rgba(10,10,10,0.98); transition: opacity .4s; }
+.loader-logo { width:120px; height:120px; border-radius:50%; border:6px solid transparent; border-top-color:var(--neon-blue); border-bottom-color:var(--futurist-purple); animation: spin 1.5s linear infinite; }
+@keyframes spin{ to{ transform: rotate(360deg);} }
+
+/* Nav glass */
+.nav { backdrop-filter: blur(8px); background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); box-shadow: 0 6px 24px rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.04); }
+
+/* Neon text */
+.neon-text { text-shadow: 0 0 6px var(--neon-blue), 0 0 18px var(--neon-blue); }
+
+/* Buttons */
+.btn-glow { background: linear-gradient(45deg,var(--neon-blue),var(--futurist-purple)); box-shadow: 0 6px 24px rgba(138,43,226,0.12), 0 0 18px var(--neon-blue); color:#fff; transition: transform .18s, box-shadow .18s; }
+.btn-glow:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(138,43,226,0.18), 0 0 32px var(--neon-blue); }
+
+/* Cards */
+.service-card { border: 1px solid rgba(255,255,255,0.04); transform-origin:center; }
+.hover-card { transition: transform .35s cubic-bezier(.2,.9,.2,1), box-shadow .35s; }
+.hover-card:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 20px 60px rgba(0,217,255,0.06); }
+
+/* Glass card */
+.glass-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); backdrop-filter: blur(8px); }
+
+/* Skillbars */
+.skillbar { height:10px; background: rgba(255,255,255,0.05); border-radius:999px; overflow:hidden; }
+.skillbar-fill { height:100%; width:0%; border-radius:999px; background: linear-gradient(90deg,var(--neon-blue),var(--futurist-purple)); transition: width 1.2s cubic-bezier(.2,.85,.2,1); }
+
+/* Counters */
+.stat-card { border:1px solid rgba(255,255,255,0.04); }
+
+/* Carousel */
+.carousel .carousel-track { will-change: transform; }
+
+/* WhatsApp fixed */
+.whatsapp-fixed { position:fixed; right:20px; bottom:20px; width:54px; height:54px; background:linear-gradient(45deg,var(--neon-blue),var(--futurist-purple)); border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow: 0 10px 30px rgba(0,217,255,0.12); z-index:50; }
+
+/* Back to top */
+.back-to-top { position:fixed; right:20px; bottom:90px; width:48px; height:48px; border-radius:10px; background:rgba(255,255,255,0.06); display:grid; place-items:center; backdrop-filter: blur(6px); }
+
+/* Lightbox */
+.lightbox { display:flex; }
+
+/* Responsive */
+@media (max-width:767px){
+  .nav ul { display:none; }
+}
+
+/* Utility */
+.hidden { display:none; }
+
+/* -------------------------------
+  Correções finais para modo claro
+  Cole este bloco NO FINAL do style.css
+---------------------------------*/
+
+/* Garantir que a cor base use a variável definida para cada tema */
+html[data-theme="light"] body,
+html[data-theme="light"] body * {
+  color: var(--text-main) !important;
+}
+
+/* Sobrescrever utilitários Tailwind que definem text-white/text-gray-300 */
+html[data-theme="light"] .text-white,
+html[data-theme="light"] .text-gray-50,
+html[data-theme="light"] .text-gray-100,
+html[data-theme="light"] .text-gray-200,
+html[data-theme="light"] .text-gray-300 {
+  color: var(--muted) !important; /* texto secundário no claro */
+}
+
+/* Headings devem ter mais contraste que texto secundário */
+html[data-theme="light"] h1,
+html[data-theme="light"] h2,
+html[data-theme="light"] h3,
+html[data-theme="light"] h4,
+html[data-theme="light"] h5,
+html[data-theme="light"] h6 {
+  color: var(--text-main) !important;
+  text-shadow: none !important;
+}
+
+/* Links / nav */
+html[data-theme="light"] a,
+html[data-theme="light"] .nav-link {
+  color: var(--neon-blue) !important;
+  text-decoration: none;
+}
+html[data-theme="light"] a:hover,
+html[data-theme="light"] .nav-link:hover {
+  color: var(--futurist-purple) !important;
+}
+
+/* Botões: texto do botão e bordas */
+html[data-theme="light"] .btn-glow,
+html[data-theme="light"] .btn-glow * {
+  color: var(--btn-text) !important;
+}
+
+/* Glass / cards / containers: ajustar texto interno */
+html[data-theme="light"] .glass-card,
+html[data-theme="light"] .service-card,
+html[data-theme="light"] .stat-card,
+html[data-theme="light"] .carousel,
+html[data-theme="light"] .loader {
+  color: var(--text-main) !important;
+}
+
+/* Skillbar label / small text (quando usar text-gray-300 no HTML) */
+html[data-theme="light"] .skillbar + p,
+html[data-theme="light"] .text-sm,
+html[data-theme="light"] small {
+  color: var(--muted) !important;
+}
+
+/* Depoimentos (itálico e rodapés) */
+html[data-theme="light"] .glass-card p,
+html[data-theme="light"] .glass-card footer,
+html[data-theme="light"] .glass-card .italic {
+  color: var(--text-main) !important;
+}
+
+/* Portfolio captions / overlays */
+html[data-theme="light"] .portfolio-item .overlay,
+html[data-theme="light"] .portfolio-item figcaption,
+html[data-theme="light"] .portfolio-item .caption {
+  color: var(--text-main) !important;
+}
+
+/* Forçar contraste em SVG inline que use fill="white" */
+html[data-theme="light"] svg [fill="#fff"],
+html[data-theme="light"] svg [fill="#FFFFFF"],
+html[data-theme="light"] svg [stroke="#fff"],
+html[data-theme="light"] svg [stroke="#FFFFFF"] {
+  fill: var(--text-main) !important;
+  stroke: var(--text-main) !important;
+}
+
+/* Garantir que componentes com classes utilitárias que setam background escuro
+   sigam o esquema de cores do tema claro (ex: bg-gray-900 em modo claro) */
+html[data-theme="light"] .bg-gray-900,
+html[data-theme="light"] .bg-black,
+html[data-theme="light"] .bg-gray-800 {
+  background: transparent !important;
+  color: var(--text-main) !important;
+}
+
+/* Caso queira ajustar imagens automaticamente no claro (opcional) */
+html[data-theme="light"] img.invert-on-light {
+  filter: contrast(1.04) brightness(1.02) !important;
+}
+
+/* Remover sombras de texto muito fortes no claro */
+html[data-theme="light"] .neon-text,
+html[data-theme="light"] h1.neon-text,
+html[data-theme="light"] h2.neon-text {
+  text-shadow: none !important;
+}
+
+/* Pequena regra final para garantir foco legível no modo claro */
+html[data-theme="light"] :focus {
+  outline-color: var(--neon-blue) !important;
+  outline-offset: 3px !important;
+}
