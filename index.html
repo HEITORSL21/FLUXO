@@ -15,13 +15,6 @@
 </head>
 <body class="bg-dark-bg text-white">
 
-  <!-- NOTE: alterações realizadas
-       - botões "Solicitar orçamento" transformados em links <a href="orcamento.html"> com ids para fallback JS
-       - CTA WhatsApp e floating WhatsApp atualizados para +55 89 99438-6200 (wa.me/5589994386200)
-       - "Ver portfólio" agora é link para #portfolio
-       - adicionado link "Solicitar orçamento" no menu mobile
-  -->
-
   <!-- Loader -->
   <div id="site-loader" class="loader fixed inset-0 flex items-center justify-center z-50">
     <div class="loader-logo" aria-hidden="true"></div>
@@ -50,7 +43,7 @@
       </div>
     </nav>
 
-    <!-- Mobile menu (adicionado link de solicitar orçamento) -->
+    <!-- Mobile menu -->
     <div id="mobile-menu" class="mobile-menu hidden mt-2 bg-gray-900/60 rounded-2xl p-4 backdrop-blur-md" aria-hidden="true">
       <a href="#servicos" class="block py-2">Serviços</a>
       <a href="#portfolio" class="block py-2">Portfólio</a>
@@ -64,7 +57,7 @@
     <section id="hero" class="relative min-h-screen flex items-center justify-center text-center overflow-hidden">
       <div id="particles-js" class="absolute inset-0 -z-10" aria-hidden="true"></div>
 
-      <!-- Hero Lottie (exemplo) -->
+      <!-- Hero Lottie -->
       <div class="hero-lottie-wrapper absolute right-6 top-12 opacity-30 pointer-events-none hidden lg:block">
         <lottie-player id="heroLottie" src="https://assets7.lottiefiles.com/packages/lf20_touohxv0.json"
           background="transparent" speed="1" loop autoplay style="width:320px;height:320px;"></lottie-player>
@@ -76,7 +69,7 @@
 
         <div class="flex flex-col md:flex-row items-center gap-4 justify-center">
           <button id="primary-cta" class="btn-glow px-8 py-4 rounded-full text-lg font-bold">Criar meu site agora</button>
-          <!-- convertido para <a> para garantir navegação -->
+          <!-- convertido para <a> -->
           <a id="solicitar-orcamento-hero" href="orcamento.html" role="button"
              class="inline-flex items-center justify-center px-6 py-3 rounded-full border border-white/20 hover:bg-white/5">
             Solicitar orçamento
@@ -84,7 +77,6 @@
           <!-- Ver portfólio aponta para a seção -->
           <a id="demo-cta" href="#portfolio" class="px-6 py-3 rounded-full border border-white/20 hover:bg-white/5">Ver portfólio</a>
         </div>
-
         <div class="mt-8 text-sm opacity-80"> <span id="typing" class="font-medium"></span></div>
       </div>
     </section>
@@ -168,17 +160,20 @@
         <h2 class="text-4xl font-bold text-center mb-12 neon-text">NOSSA GALERIA</h2>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <figure class="portfolio-item rounded-xl overflow-hidden cursor-zoom" data-media="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/35b67f83-4662-455e-aed1-442c31cb4720.png">
-            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/35b67f83-4662-455e-aed1-442c31cb4720.png" alt="Projeto 1" loading="lazy" class="w-full h-auto">
+          <figure class="portfolio-item rounded-xl overflow-hidden cursor-zoom" data-media="https://i.postimg.cc/WpXxHtYM/image.png">
+            <img src="https://i.postimg.cc/WpXxHtYM/image.png" alt="FLUXO" loading="lazy" class="w-full h-auto">
           </figure>
+          <a href="https://heitorsl21.github.io/FLUXO/" target="_blank" class="neon-btn">Ver Projeto</a>
 
-          <figure class="portfolio-item rounded-xl overflow-hidden cursor-zoom" data-media="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/99d919f8-00fd-447f-8b7f-5c5421fa09ff.png">
-            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/99d919f8-00fd-447f-8b7f-5c5421fa09ff.png" alt="Projeto 2" loading="lazy" class="w-full h-auto">
+          <figure class="portfolio-item rounded-xl overflow-hidden cursor-zoom" data-media="https://i.postimg.cc/QCtY3kYc/image.png">
+            <img src="https://i.postimg.cc/QCtY3kYc/image.png" alt="Portifolio-Heitor" loading="lazy" class="w-full h-auto">
           </figure>
+          <a href="https://heitorsl21.github.io/Portifolio-Heitor/" target="_blank" class="neon-btn">Ver Projeto</a>
 
-          <figure class="portfolio-item rounded-xl overflow-hidden cursor-zoom" data-media="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/7137752c-fd6d-4288-90d6-d5f09b9f8c62.png">
-            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/7137752c-fd6d-4288-90d6-d5f09b9f8c62.png" alt="Projeto 3" loading="lazy" class="w-full h-auto">
+          <figure class="portfolio-item rounded-xl overflow-hidden cursor-zoom" data-media="https://i.ibb.co/DP24YKt3/image.png">
+            <img src="https://i.ibb.co/DP24YKt3/Htech.png" alt="Htech" loading="lazy" class="w-full h-auto">
           </figure>
+          <a href="https://heitorsl21.github.io/Htech/" target="_blank" class="neon-btn">Ver Projeto</a>
         </div>
       </div>
     </section>
@@ -243,7 +238,11 @@
       </div>
     </div>
   </section>
-
+ 
+  <!-- FOOTER NEON -->
+  <footer class="bg-black border-t border-purple-800 py-4 text-center text-sm text-purple-400 drop-shadow-lg animate-neon">
+    © 2025 FLUXO. Todos os direitos reservados.
+  </footer>
 
   <!-- Floating WhatsApp (atualizado para seu número) -->
   <a href="https://wa.me/5589994386200" target="_blank" rel="noopener noreferrer" class="whatsapp-fixed" aria-label="Whatsapp">
