@@ -194,11 +194,6 @@ body { background: var(--dark-bg); color: inherit; -webkit-font-smoothing:antial
 /* Utility */
 .hidden { display:none; }
 
-/* -------------------------------
-  Correções finais para modo claro
-  Cole este bloco NO FINAL do style.css
----------------------------------*/
-
 /* Garantir que a cor base use a variável definida para cada tema */
 html[data-theme="light"] body,
 html[data-theme="light"] body * {
@@ -214,7 +209,7 @@ html[data-theme="light"] .text-gray-300 {
   color: var(--muted) !important; /* texto secundário no claro */
 }
 
-/* Headings devem ter mais contraste que texto secundário */
+/* Headings */
 html[data-theme="light"] h1,
 html[data-theme="light"] h2,
 html[data-theme="light"] h3,
@@ -251,7 +246,7 @@ html[data-theme="light"] .loader {
   color: var(--text-main) !important;
 }
 
-/* Skillbar label / small text (quando usar text-gray-300 no HTML) */
+/* Skillbar label / small text */
 html[data-theme="light"] .skillbar + p,
 html[data-theme="light"] .text-sm,
 html[data-theme="light"] small {
@@ -271,6 +266,7 @@ html[data-theme="light"] .portfolio-item figcaption,
 html[data-theme="light"] .portfolio-item .caption {
   color: var(--text-main) !important;
 }
+#buttons 
 
 /* Forçar contraste em SVG inline que use fill="white" */
 html[data-theme="light"] svg [fill="#fff"],
@@ -282,7 +278,7 @@ html[data-theme="light"] svg [stroke="#FFFFFF"] {
 }
 
 /* Garantir que componentes com classes utilitárias que setam background escuro
-   sigam o esquema de cores do tema claro (ex: bg-gray-900 em modo claro) */
+    sejam ajustados no modo claro */
 html[data-theme="light"] .bg-gray-900,
 html[data-theme="light"] .bg-black,
 html[data-theme="light"] .bg-gray-800 {
@@ -290,7 +286,7 @@ html[data-theme="light"] .bg-gray-800 {
   color: var(--text-main) !important;
 }
 
-/* Caso queira ajustar imagens automaticamente no claro (opcional) */
+/* ajustar imagens automaticamente no claro  */
 html[data-theme="light"] img.invert-on-light {
   filter: contrast(1.04) brightness(1.02) !important;
 }
@@ -306,4 +302,47 @@ html[data-theme="light"] h2.neon-text {
 html[data-theme="light"] :focus {
   outline-color: var(--neon-blue) !important;
   outline-offset: 3px !important;
+}
+
+/* Botão neon cyberpunk compacto */
+.neon-btn {
+  display: inline-block;
+  padding: 6px 14px; /* menor para não ficar grandão */
+  margin-top: 8px;
+  font-size: 0.85rem; /* tamanho reduzido */
+  font-weight: bold;
+  color: #fff;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 6px;
+  background: linear-gradient(45deg, #ff00ff, #00f0ff, #9d00ff);
+  background-size: 300% 300%;
+  animation: gradientShift 6s ease infinite, neonPulse 1.5s infinite alternate;
+  box-shadow: 0 0 6px #ff00ff, 0 0 12px #00f0ff, 0 0 20px #9d00ff;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s;
+}
+
+/* Hover: brilha mais e aumenta um pouquinho */
+.neon-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px #ff00ff, 0 0 24px #00f0ff, 0 0 40px #9d00ff;
+}
+
+/* Animação gradiente em movimento */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Pulsação estilo neon piscando */
+@keyframes neonPulse {
+  from {
+    text-shadow: 0 0 4px #ff00ff, 0 0 10px #00f0ff;
+    opacity: 0.85;
+  }
+  to {
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #00f0ff;
+    opacity: 1;
+  }
 }
